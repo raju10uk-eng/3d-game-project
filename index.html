@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Game Project</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #1a1a2e;
+      color: #ffffff;
+      overflow: hidden;
+    }
+
+    #game-container {
+      width: 100%;
+      height: 100vh;
+      display: block;
+    }
+
+    #hud {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 15px;
+      border-radius: 8px;
+      border: 2px solid #ff6b6b;
+      font-size: 14px;
+      line-height: 1.8;
+      min-width: 200px;
+    }
+
+    #difficulty-selector {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 15px;
+      border-radius: 8px;
+      border: 2px solid #ff6b6b;
+    }
+
+    #difficulty-selector select {
+      padding: 8px 12px;
+      margin-top: 10px;
+      background-color: #2a2a3e;
+      color: #ffffff;
+      border: 1px solid #ff6b6b;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    #difficulty-selector select:hover {
+      background-color: #3a3a4e;
+    }
+
+    .stat-bar {
+      width: 150px;
+      height: 8px;
+      background-color: #333;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 5px;
+    }
+
+    .stat-bar-fill {
+      height: 100%;
+      background-color: #ff6b6b;
+      width: 100%;
+      transition: width 0.2s ease;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: #aaa;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div id="game-container"></div>
+  
+  <div id="hud">
+    <div>Health: <span id="health">100</span></div>
+    <div class="stat-bar"><div class="stat-bar-fill" id="health-bar" style="width: 100%;"></div></div>
+    
+    <div class="stat-label">Stamina: <span id="stamina">100</span></div>
+    <div class="stat-bar"><div class="stat-bar-fill" id="stamina-bar" style="width: 100%; background-color: #4ecdc4;"></div></div>
+    
+    <div class="stat-label">Weapon: <span id="weapon">Sword</span></div>
+    <div class="stat-label">Difficulty: <span id="difficulty-display">Normal</span></div>
+  </div>
+
+  <div id="difficulty-selector">
+    <label for="difficulty-select">Select Difficulty:</label>
+    <select id="difficulty-select" onchange="changeDifficulty(this.value)">
+      <option value="normal">Normal</option>
+      <option value="hard">Hard</option>
+      <option value="nightmare">Nightmare</option>
+    </select>
+  </div>
+
+  <script src="dist/index.js"></script>
+  <script>
+    function changeDifficulty(value) {
+      window.location.search = `?difficulty=${value}`;
+    }
+  </script>
+</body>
+</html>
